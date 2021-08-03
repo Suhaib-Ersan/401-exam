@@ -13,14 +13,15 @@ class AllDataAPI extends Component {
     return (
       <>
         <div className="allColorsDiv">
-          {this.props.colorData.map((ele) => {
+          {this.props.colorData.map((ele, idx) => {
             return (
               <Card style={{ width: "18rem" }}>
                 <form onSubmit={this.props.addToFavorites} >
                   <Card.Img name="image" variant="top" src={ele.image} />
                   <Card.Body>
                     <Card.Title name="title">{ele.title}</Card.Title>
-                    <Button type="submit"  variant="primary">Add to favorites</Button>
+                    <Button type="submit" onClick={() => {this.props.deleteColor(idx)}} variant="primary">Delete</Button>
+                    <Button type="submit" onClick={() => {this.props.updateColor(idx)}} variant="primary">Update</Button>
                   </Card.Body>
                 </form>
               </Card>

@@ -18,7 +18,7 @@ class AllDataAPI extends Component {
           image: "test",
         },
       ],
-      
+      showModal: false,
     };
     
   }
