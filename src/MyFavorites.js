@@ -5,7 +5,7 @@ import { withAuth0 } from "@auth0/auth0-react";
 
 import axios from "axios";
 import MyFavoritesCard from "./components/MyFavoritesCard";
-import { Modal } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
 
 class MyFavorites extends React.Component {
   constructor(props) {
@@ -17,6 +17,8 @@ class MyFavorites extends React.Component {
           image: "test",
         },
       ],
+      modalTitle: '',
+      modalImage: '',
     };
   }
   async componentDidMount() {
@@ -30,10 +32,22 @@ class MyFavorites extends React.Component {
     });
   }
   async deleteColor() {}
-  async updateColor() {}
+  async updateColor(idx, title, image) {
+    this.setState ({
+      showModal: true,
+    })
+
+
+  }
+  async updateColorAndClose
   handleClose() {
     this.setState ({
-      
+      showModal: false,
+    })
+  }
+  handleModalOpen() {
+    this.setState ({
+      showModal: true,
     })
   }
   render() {
@@ -44,15 +58,16 @@ class MyFavorites extends React.Component {
         <MyFavoritesCard colorData={this.state.favColorData} deleteColor={this.deleteColor} updateColor={this.updateColor} />
         <Modal show={this.state.showModal} onHide={this.handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
+            <Modal.Title>Update Color</Modal.Title>
           </Modal.Header>
-          <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+          <Modal.Body><form><input type="text" defaultText={this.state.modalTitle}/></form>
+             {this.state.modalImage}</Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.handleClose}>
               Close
             </Button>
-            <Button variant="primary" onClick={this.handleClose}>
-              Save Changes
+            <Button onClick{} variant="primary" onClick={this.handleClose}>
+              Update
             </Button>
           </Modal.Footer>
         </Modal>

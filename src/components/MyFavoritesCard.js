@@ -4,7 +4,7 @@ import { withAuth0 } from "@auth0/auth0-react";
 import { Card, Button } from "react-bootstrap";
 import "./MyFavoritesCard.css";
 
-class AllDataAPI extends Component {
+class MyFavoritesCard extends Component {
   constructor(props) {
     super(props);
   }
@@ -21,7 +21,7 @@ class AllDataAPI extends Component {
                   <Card.Body>
                     <Card.Title name="title">{ele.title}</Card.Title>
                     <Button type="submit" onClick={() => {this.props.deleteColor(idx)}} variant="primary">Delete</Button>
-                    <Button type="submit" onClick={() => {this.props.updateColor(idx)}} variant="primary">Update</Button>
+                    <Button type="submit" onClick={() => {this.props.updateColor(idx, ele.title, ele.image)}} variant="primary">Update</Button>
                   </Card.Body>
                 </form>
               </Card>
@@ -33,4 +33,4 @@ class AllDataAPI extends Component {
   }
 }
 
-export default withAuth0(AllDataAPI);
+export default withAuth0(MyFavoritesCard);
