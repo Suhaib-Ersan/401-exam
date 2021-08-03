@@ -32,13 +32,24 @@ class MyFavorites extends React.Component {
     });
   }
   async deleteColor() {
-    let newColors = axios.delete(`${process.env.REACT_APP_SERVER}/deletecolor`)
+    const { user } = this.props.auth0;
+    let newColors = axios.delete(`${process.env.REACT_APP_SERVER}/deletecolor?idx=${}&email=${user.email}`);
+
+    this.setState({
+      favColorData:newColors,
+    })
   }
   async updateColor(idx, title, image) {
     this.setState ({
       showModal: true,
     })
-
+    const { user } = this.props.auth0;
+    let dataObj = {
+      idx,
+      title,
+      image,
+    }
+    let newColors = axios.post(`${process.env.REACT_APP_SERVER}/updatecolor?idx=${}&email=${user.email}`)
 
   }
   async updateColorAndClose() {
