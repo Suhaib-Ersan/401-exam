@@ -4,6 +4,27 @@ import './MyFavorites.css';
 import { withAuth0 } from '@auth0/auth0-react';
 
 class MyFavorites extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      favColorData: [
+        {
+          title: "test",
+          image: "test",
+        },
+      ],
+    }
+  }
+  componentDidMount() {
+    let axiosData = axios.get(`${process.env.REACT_APP_SERVER}/favcolors`);
+    let allColorsData = axiosData.data;
+
+    // console.log({ allColorsData });
+
+    await this.setState({
+      favColorData: allColorsData,
+    });
+  }
   render() {
     return(
       <>
@@ -11,6 +32,7 @@ class MyFavorites extends React.Component {
         <p>
           This is a collection of my favorites
         </p>
+        <MyFavoritesCard />
       </>
     )
   }
