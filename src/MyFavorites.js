@@ -31,7 +31,9 @@ class MyFavorites extends React.Component {
       favColorData: allColorsData,
     });
   }
-  async deleteColor() {}
+  async deleteColor() {
+    let newColors = axios.delete(`${process.env.REACT_APP_SERVER}/deletecolor`)
+  }
   async updateColor(idx, title, image) {
     this.setState ({
       showModal: true,
@@ -39,7 +41,9 @@ class MyFavorites extends React.Component {
 
 
   }
-  async updateColorAndClose
+  async updateColorAndClose() {
+
+  }
   handleClose() {
     this.setState ({
       showModal: false,
